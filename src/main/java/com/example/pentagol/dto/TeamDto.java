@@ -10,8 +10,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TeamDto {
-    private Integer id;
+//    private Integer id;
     private String name;
     private String logoUrl;
     private String ligaName;
+    private boolean status;
+    private int goals;
+    private int point;
+    private int referencesBetween;
 }

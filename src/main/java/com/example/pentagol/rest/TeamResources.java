@@ -1,5 +1,6 @@
 package com.example.pentagol.rest;
 
+import com.example.pentagol.dto.GameDto;
 import com.example.pentagol.dto.ResponseDto;
 import com.example.pentagol.dto.TeamDto;
 import com.example.pentagol.service.TeamService;
@@ -20,5 +21,9 @@ public class TeamResources {
     @PostMapping
     public ResponseDto<TeamDto> addTeam(@RequestBody TeamDto teamDto){
         return teamService.addTeam(teamDto);
+    }
+    @GetMapping("/sort")
+    public ResponseDto<List<TeamDto>> sort(){
+        return teamService.sort();
     }
 }

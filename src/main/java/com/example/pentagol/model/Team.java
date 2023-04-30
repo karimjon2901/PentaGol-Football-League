@@ -19,4 +19,8 @@ public class Team {
     private String name;
     private String logoUrl;
     private String ligaName;
+    private int goals;
+    private int point;
+    private int referencesBetween;
+//    private boolean status;
 }

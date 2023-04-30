@@ -9,21 +9,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.awt.*;
-import java.io.File;
-import java.util.Date;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class News {
+public class Users {
     @Id
-    @GeneratedValue(generator = "newsIdSeq")
-    @SequenceGenerator(name = "newsIdSeq", sequenceName = "news_id_seq", allocationSize = 1)
+    @GeneratedValue(generator = "usersIdSeq")
+    @SequenceGenerator(name = "usersIdSeq", sequenceName = "users_id_seq", allocationSize = 1)
     private Integer id;
-    private String description;
-    private File image;
-    private Date date;
+    private String username;
+    private String password;
+    private String role = "ADMIN";
+    private boolean status;
 }

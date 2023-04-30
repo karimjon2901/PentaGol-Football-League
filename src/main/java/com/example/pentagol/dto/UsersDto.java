@@ -1,5 +1,6 @@
 package com.example.pentagol.dto;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +10,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PointDto {
-    private Integer id;
-    private TeamDto teamDto;
-    private int score;
+public class UsersDto {
+    private String username;
+    private String password;
+    private String role = "ADMIN";
+    private boolean status;
 }

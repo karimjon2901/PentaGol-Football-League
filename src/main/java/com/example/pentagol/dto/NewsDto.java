@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.awt.*;
+import java.io.File;
 import java.util.Date;
 
 @Getter
@@ -14,6 +16,6 @@ import java.util.Date;
 public class NewsDto {
     private Integer id;
     private String description;
-    private String imageUrl;
+    private File image;
     private Date date;
 }

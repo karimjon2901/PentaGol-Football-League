@@ -5,13 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GoalsDto {
+public class GameInputDto {
     private Integer id;
-    private TeamDto teamDto;
     private String ligaName;
-    private int count;
+    private String teamA;
+    private String teamB;
+    private Date date;
+    private int resultA;
+    private int resultB;
+    private boolean finished;
 }

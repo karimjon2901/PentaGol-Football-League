@@ -1,5 +1,6 @@
 package com.example.pentagol.service;
 
+import com.example.pentagol.dto.GameDto;
 import com.example.pentagol.dto.ResponseDto;
 import com.example.pentagol.dto.TeamDto;
 import com.example.pentagol.model.Team;
@@ -47,6 +48,17 @@ public class TeamService {
                 .success(true)
                 .code(OK_CODE)
                 .message(OK)
+                .build();
+    }
+
+    public ResponseDto<List<TeamDto>> sort() {
+        List<Team> teams = teamRepository.findAllByOrderByPoint();
+
+        return ResponseDto.<List<TeamDto>>builder()
+                .message(OK)
+                .code(OK_CODE)
+                .success(true)
+                .data(teams.stream().map(teamMapper::toDto).toList())
                 .build();
     }
 }

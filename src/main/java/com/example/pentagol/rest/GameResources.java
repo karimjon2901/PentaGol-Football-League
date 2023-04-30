@@ -1,9 +1,10 @@
 package com.example.pentagol.rest;
 
 import com.example.pentagol.dto.GameDto;
+import com.example.pentagol.dto.GameInputDto;
 import com.example.pentagol.dto.ResponseDto;
 import com.example.pentagol.service.GameService;
-import com.example.pentagol.service.mapper.GameMapper;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GameResources {
     private final GameService gameService;
-    private final GameMapper gameMapper;
 
     @GetMapping
     public ResponseDto<List<GameDto>> getAll(){
@@ -22,7 +22,7 @@ public class GameResources {
     }
 
     @PostMapping
-    public ResponseDto<GameDto> addGame(@RequestBody GameDto gameDto){
-        return gameService.addGame(gameDto);
+    public ResponseDto<GameDto> addGame(@RequestBody GameInputDto gameInputDtoDto){
+        return gameService.addGame(gameInputDtoDto);
     }
 }

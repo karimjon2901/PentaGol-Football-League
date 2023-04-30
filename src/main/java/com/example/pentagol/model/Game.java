@@ -15,11 +15,13 @@ import java.util.Date;
 @Entity
 public class Game {
     @Id
+    @GeneratedValue(generator = "gameIdSeq")
+    @SequenceGenerator(name = "gameIdSeq", sequenceName = "game_id_seq", allocationSize = 1)
     private Integer id;
     private String ligaName;
-    @OneToOne
+    @ManyToOne
     private Team teamA;
-    @OneToOne
+    @ManyToOne
     private Team teamB;
     private Date date;
     private int resultA;
