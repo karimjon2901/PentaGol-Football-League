@@ -1,10 +1,10 @@
 package com.example.pentagol.service;
 
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,11 +38,11 @@ public class ImageService {
             return null;
         }
     }
-    public MultipartFile getImage(String imageUrl) throws FileNotFoundException {
+    public MultipartFile getImage(String imageUrl) throws IOException {
         File file = new File(imageUrl);
         FileInputStream input = new FileInputStream(file);
         MultipartFile multipartFile = new MockMultipartFile("file",file.getName(),
-                "application/docx", IOUtils.toByteArray(input));
+                "application/docx", input.readAllBytes());
 
         return multipartFile;
     }
