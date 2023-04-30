@@ -15,14 +15,17 @@ import java.util.List;
 public class TeamResources {
     private final TeamService teamService;
     @GetMapping
+//    @CrossOrigin(origins = "http://10.10.3.34:5173")
     public ResponseDto<List<TeamDto>> getAll(){
         return teamService.getAll();
     }
     @PostMapping
+    @CrossOrigin(origins = "http://10.10.3.34:5173")
     public ResponseDto<TeamDto> addTeam(@RequestBody TeamDto teamDto){
         return teamService.addTeam(teamDto);
     }
     @GetMapping("/sort")
+    @CrossOrigin(origins = "http://10.10.3.34:5173")
     public ResponseDto<List<TeamDto>> sort(){
         return teamService.sort();
     }

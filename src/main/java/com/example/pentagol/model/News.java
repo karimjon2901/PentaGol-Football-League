@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
 import java.io.File;
@@ -24,6 +25,7 @@ public class News {
     @SequenceGenerator(name = "newsIdSeq", sequenceName = "news_id_seq", allocationSize = 1)
     private Integer id;
     private String description;
-    private File image;
+    private String imageUrl;
     private Date date;
+    private String title;
 }

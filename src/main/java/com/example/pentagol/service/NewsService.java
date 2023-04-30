@@ -9,8 +9,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static com.example.pentagol.service.AppStatus.AppStatusCodes.*;
 import static com.example.pentagol.service.AppStatus.AppStatusMessages.*;
@@ -20,6 +27,7 @@ import static com.example.pentagol.service.AppStatus.AppStatusMessages.*;
 public class NewsService {
     private final NewsRepository newsRepository;
     private final NewsMapper newsMapper;
+    private final ImageService imageService;
 
     public ResponseDto<List<NewsDto>> getAll() {
         List<News> news = newsRepository.findAll();
@@ -32,10 +40,10 @@ public class NewsService {
                 .build();
     }
 
-    public ResponseDto<NewsDto> getById(Integer id){
+    public ResponseDto<NewsDto> getById(Integer id) {
         Optional<News> newsOptional = newsRepository.findById(id);
 
-        if (newsOptional.isEmpty()){
+        if (newsOptional.isEmpty()) {
             return ResponseDto.<NewsDto>builder()
                     .code(NOT_FOUND_ERROR_CODE)
                     .message(NOT_FOUND)
@@ -50,9 +58,9 @@ public class NewsService {
                 .build();
     }
 
-    public ResponseDto<NewsDto> delete(Integer id){
+    public ResponseDto<NewsDto> delete(Integer id) {
         Optional<News> newsOptional = newsRepository.findById(id);
-        if (newsOptional.isEmpty()){
+        if (newsOptional.isEmpty()) {
             return ResponseDto.<NewsDto>builder()
                     .code(NOT_FOUND_ERROR_CODE)
                     .message(NOT_FOUND)
@@ -68,7 +76,18 @@ public class NewsService {
                 .build();
     }
 
-    public ResponseDto<NewsDto> addNews(MultipartFile file) {
-        return null;
+    public ResponseDto<NewsDto> addNews(NewsDto newsDto) {
+
+        News entity = newsMapper.toEntity(newsDto);
+
+        newsRepository.save(entity);
+
+        return ResponseDto.<NewsDto>builder()
+                .message(OK)
+                .success(true)
+                .data(newsDto)
+                .code(OK_CODE)
+                .build();
     }
+
 }
